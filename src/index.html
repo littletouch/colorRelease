@@ -61,12 +61,19 @@
     <script src="../bower_components/color-thief/dist/color-thief.min.js"></script>
     <!-- endbuild -->
 
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/0.9.1/angularfire.min.js"></script>
+
     <!-- build:js({.tmp,src`}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/index.js"></script>
+    <script src="components/navbar/navbar.controller.js"></script>
+    <script src="app/services/store.js"></script>
     <script src="app/services/cover.js"></script>
     <script src="app/main/main.controller.js"></script>
-    <script src="components/navbar/navbar.controller.js"></script>
     <!-- endinject -->
 
     <!-- inject:partials -->
