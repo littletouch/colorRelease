@@ -44,7 +44,6 @@
     </script>
 
     <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-animate/angular-animate.js"></script>
@@ -59,15 +58,15 @@
     <script src="../bower_components/foundation/js/foundation.js"></script>
     <script src="../bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="../bower_components/angular-spotify/dist/angular-spotify.min.js"></script>
-    <!-- endbower -->
+    <script src="../bower_components/color-thief/dist/color-thief.min.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,src}) scripts/app.js -->
+    <!-- build:js({.tmp,src`}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/index.js"></script>
-    <script src="components/navbar/navbar.controller.js"></script>
     <script src="app/services/cover.js"></script>
     <script src="app/main/main.controller.js"></script>
+    <script src="components/navbar/navbar.controller.js"></script>
     <!-- endinject -->
 
     <!-- inject:partials -->

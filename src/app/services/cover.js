@@ -58,6 +58,38 @@ angular.module('colorRelease')
       return deferred.promise;
     }
 
+    var calculateColorDistance = function (pointA, pointB) {
+      var dr = pointA.red - pointB.red,
+        dg = pointA.green - pointB.green,
+        db = pointA.blue - pointB.blue;
+      return Math.sqrt(Math.pow(dr, 2), Math.pow(dg, 2), Math.pow(db));
+    }
+
+    var colorCollection = {
+      red:  {red: 255, green: 0, blue: 0},
+      green: {red: 0, green: 255, blue: 0},
+      blue: {red: 0, green: 0, blue: 255},
+      white: {red: 255, green: 255, blue: 255},
+      black: {red: 0, green: 0, blue: 0}
+    }
+
+    var classifyAlbum = function (album, colorCollection) {
+      var colorInfo = album.cover.colorInfo,
+        THRESHOLD = 180;
+      for(var prop in colorCollection) {
+        if(colorCollection.hasOwnProperty(prop)) {
+          var dist = calculateColorDistance(colorCollection[prop], colorInfo);
+          if(dist<THRESHOLD) {
+            album.cover.class = prop;
+            break;
+          }
+        }
+      }
+
+      console.log(album);
+      return ;
+    }
+
     var processAlbum = function (album) {
       var date = new Date(album['date']);
       var albumCluse = 'album:' + album['title'];
@@ -72,7 +104,32 @@ angular.module('colorRelease')
       }).then(function (data) {
         console.log(data);
         if (data.albums.items.length>0) {
-          console.log('found');
+          var originalAlbum = data.albums.items[0],
+            originalCover =  originalAlbum.images[0],
+            album = {
+              cover: {
+                url: originalCover.url,
+                height: originalCover.height,
+                width: originalCover.width,
+                colorInfo: {}
+              },
+              link: originalAlbum.external_urls.spotify,
+              id: originalAlbum.id,
+              name: originalAlbum.name
+            };
+
+          var cover = album.cover,
+            img = new Image(cover.width, cover.height);
+          img.crossOrigin = "Anonymous";
+          img.onload = function(e) {
+            var colorThief = new ColorThief(),
+              colorInfo = colorThief.getColor(img);
+            album.cover.colorInfo.red = colorInfo[0];
+            album.cover.colorInfo.green = colorInfo[1];
+            album.cover.colorInfo.blue = colorInfo[2];
+            classifyAlbum(album, colorCollection);
+          }
+          img.src = cover.url;
         } else {
           console.log('not found')
         }
@@ -84,12 +141,9 @@ angular.module('colorRelease')
     var processAlbums = function (albums){
       var task = $interval(function(){
         var album = albums.pop();
-
         processAlbum(album);
       }, 4000, albums.length);
-
     }
-
 
     var init = function() {
       getNewReleases()
