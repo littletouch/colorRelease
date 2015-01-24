@@ -1,25 +1,37 @@
-<div class="container">
+<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-sm')" tabindex="-1" >
+  <md-toolbar class="md-default-theme">
+    <h1 class="md-toolbar-tools">color</h1>
+  </md-toolbar>
+  <md-content flex class="md-default-theme" ng-controller="MenuCtrl">
+    <a
+      ink-ripple
+      class="color"
+      ng-repeat="color in colors | orderBy:'name'"
+      ng-click="goto(color)"
+      ng-class="{active: isSelected(color)}"
+      ng-bind="color.name"
+      aria-hidden="false"
+      >
+    </a>
+  </md-content>
+</md-sidenav>
 
-  <div ng-include="'components/navbar/navbar.html'"></div>
 
-  <div class="row">
-    <div class="large-12 large-text-center columns">
-      <div class="panel">
-        <h1>'Allo, 'Allo!</h1>
-        <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
-        <p>Always a pleasure scaffolding your apps.</p>
-        <p><a class="button radius" ng-href="#">Splendid!</a></p>
-        <ul id="tracks">
-        </ul>
+<div layout="column" layout-fill tab-index="-1" role="main">
+  <md-toolbar class="md-default-theme">
+    <div class="md-toolbar-tools" ng-click="openMenu()" tabindex="0">
+      <button class="menu-icon" hide-gt-sm aria-label="Toggle Menu">
+        <md-icon icon="../../assets/images/icon_menu.svg">
+        </md-icon>
+      </button>
+      <div layout="row" flex layout-align="end center">
+        app name
       </div>
     </div>
-  </div>
-
-
-  <div class="row">
-    <div class="large-12 columns">
-      <hr>
-      <p>With ♥ from <a href="https://twitter.com/Swiip">@Swiip</a></p>
-    </div>
-  </div>
+  </md-toolbar>
+  <md-content flex class="md-default-theme">
+    <ul>
+      <li ng-repeat="album in albums | filter:filter" ng-bind="album.name"></li>
+    </ul>
+  </md-content>
 </div>
