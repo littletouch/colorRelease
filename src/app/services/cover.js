@@ -90,7 +90,7 @@ angular.module('colorRelease')
         }
       })
       .error(function(data, status, headers, config) {
-        alert("failed loading data")
+        console.log("failed loading data")
       });
 
       return deferred.promise;
@@ -112,7 +112,7 @@ angular.module('colorRelease')
         deferred.resolve(albums);
       })
       .error(function(data, status, headers, config) {
-        alert("failed loading data")
+        console.log("failed loading data")
       });
 
       return deferred.promise;
