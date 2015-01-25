@@ -2,7 +2,6 @@
 
 angular.module('colorRelease')
   .controller('MainCtrl', function ($scope, $timeout, $mdSidenav, $log, coverService, $firebase) {
-    // coverService.init();
 
     var colorRef = new Firebase('https://color-release.firebaseio.com/colors/');
     $scope.openMenu = function() {
@@ -22,4 +21,6 @@ angular.module('colorRelease')
       $log.log('goto color ' + data.color.name);
       updateAlbums(data.color.name, 20);
     });
+
+    coverService.init();
   });

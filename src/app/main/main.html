@@ -3,16 +3,20 @@
     <h1 class="md-toolbar-tools">color</h1>
   </md-toolbar>
   <md-content flex class="md-default-theme" ng-controller="MenuCtrl">
-    <a
-      ink-ripple
+    <div>
+      <a
       class="color"
       ng-repeat="color in colors | orderBy:'name'"
       ng-click="goto(color)"
       ng-class="{active: isSelected(color)}"
-      ng-bind="color.name"
+      md-highlight="isSelected(color)"
+      md-ink-ripple="#bbb"
       aria-hidden="false"
       >
-    </a>
+        <span ng-bind="color.name">
+        </span>
+      </a>
+    </div>
   </md-content>
 </md-sidenav>
 
@@ -25,11 +29,14 @@
         </md-icon>
       </button>
       <div layout="row" flex layout-align="end center">
-        app name
+        <div class="md-toolbar-item md-breadcrumb">
+          <span>App name</span>
+        </div>
       </div>
     </div>
   </md-toolbar>
-  <md-content flex class="md-default-theme">
+
+  <!-- <md-content flex class="md-default-theme">
     <ul>
       <li ng-repeat="album in albums">
         <h2>{{ album.title }}</h2>
@@ -38,6 +45,28 @@
         <p>{{ album.timestamp }}</p>
         <img ng-src="{{ album.artwork }}" />
       </li>
-    </ul>
+    </ul> -->
+
+
+  <md-content md-scroll-y flex class="md-padding md-default-theme">
+
+    <div layout="column" layout-fill layout-align="center center" class="layout-content layout-options">
+      <!-- <md-progress-circular flex class="md-hue-2" md-mode="indeterminate"></md-progress-circular> -->
+      <md-list>
+        <md-item ng-repeat="album in albums">
+          <md-item-cotent>
+            <md-card>
+              <md-card-content>
+                <h2>{{ album.title }}</h2>
+                <h3>{{ album.artist }}</h3>
+                <time>{{ album.releaseDate }}</time>
+                <p>{{ album.timestamp }}</p>
+                <img ng-src="{{ album.artwork }}" />
+              </md-card-content>
+            </md-card>
+          </md-item-cotent>
+        </md-item>
+      </md-list>
+    </div>
   </md-content>
 </div>
