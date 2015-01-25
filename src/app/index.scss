@@ -21,6 +21,11 @@
   margin-right: 16px;
 }
 
+.sidenav {
+  width: 251px;
+  min-width: 251px;
+}
+
 .img {
   @include img-responsive;
   text-align: center;
