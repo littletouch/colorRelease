@@ -48,20 +48,22 @@
     </ul> -->
 
 
-  <md-content md-scroll-y flex class="md-padding md-default-theme">
+  <md-content md-scroll-y layout="column" class="md-padding md-default-theme">
 
-    <div layout="column" layout-fill layout-align="center center" class="layout-content layout-options">
+    <div layout="column" layout-fill flex layout-align="center center" class="layout-content layout-options">
       <!-- <md-progress-circular flex class="md-hue-2" md-mode="indeterminate"></md-progress-circular> -->
       <md-list>
-        <md-item ng-repeat="album in albums">
+        <md-item ng-repeat="album in albums | filter:filter">
           <md-item-cotent>
             <md-card>
               <md-card-content>
-                <h2>{{ album.title }}</h2>
-                <h3>{{ album.artist }}</h3>
-                <time>{{ album.releaseDate }}</time>
-                <p>{{ album.timestamp }}</p>
-                <img ng-src="{{ album.artwork }}" />
+                <div layout="column" layout-algin="center center">
+                  <h2>{{ album.title }}</h2>
+                  <h3>{{ album.artist }}</h3>
+                  <time>{{ album.releaseDate }}</time>
+                  <p>{{ album.timestamp }}</p>
+                  <img class="img" ng-src="{{ album.artwork }}" />
+                </div>
               </md-card-content>
             </md-card>
           </md-item-cotent>

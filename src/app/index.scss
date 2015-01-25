@@ -1,3 +1,12 @@
+// Responsive image
+//
+// Keep images from scaling beyond the width of their parents.
+@mixin img-responsive($display: block) {
+  display: $display;
+  max-width: 100%; // Part 1: Set a maximum relative to the parent
+  height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -9,6 +18,10 @@
   background: none;
   border: none;
   margin-right: 16px;
+}
+
+.img {
+  @include img-responsive;
 }
 
 .color {
