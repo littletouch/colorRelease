@@ -161,7 +161,7 @@ angular.module('colorRelease')
         color = 'green';
       } else if (hue >= 175 && hue <= 260 ) {
         color = 'blue';
-      } else if (hue >= 285 && hue <= 330 ) {
+      } else if (hue >= 290 && hue <= 310 ) {
         color = 'purple'
       }
 

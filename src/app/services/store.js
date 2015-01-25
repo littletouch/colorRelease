@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('colorRelease')
-.factory('store', function ($http, $q, $firebase) {
+.factory('store', function ($http, $q) {
   var baseRef = new Firebase("https://color-release.firebaseio.com/");
 
   var albumsRef = baseRef.child('albums');
@@ -9,9 +9,14 @@ angular.module('colorRelease')
 
   var insertToColor = function(color, album){
     if (!color) return;
-    var ref = colorsRef.child(color+'/'+album.id);
+    // var ref = colorsRef.child(color+'/'+album.id);
+    // console.log('set album ' + album.id + ' to ' + color);
+    // ref.set(album);
     console.log('set album ' + album.id + ' to ' + color);
-    ref.set(album);
+    var ref = colorsRef.child(color + '/' + album.id);
+    var time = new Date(album['releaseDate']);
+    album['timestamp'] = time.getTime()/1000;
+    ref.setWithPriority(album, 0 - album['timestamp']);
   }
 
   var removeFromColor = function(color, album){
@@ -35,8 +40,18 @@ angular.module('colorRelease')
     var ref = albumsRef.child(album.id);
     var colorClass = album.cover.class;
 
-    ref.set(album);
-    insertToColor(colorClass, album);
+    ref.on("value", function(snapshot) {
+      var stored = snapshot.val();
+      if (stored) {
+        return
+      } else {
+        ref.set(album);
+        insertToColor(colorClass, album);
+      }
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
     // ref.on("value", function(snapshot) {
     //   var storedAlbumData = snapshot.val();
     //

@@ -31,7 +31,13 @@
   </md-toolbar>
   <md-content flex class="md-default-theme">
     <ul>
-      <li ng-repeat="album in albums | filter:filter" ng-bind="album.name"></li>
+      <li ng-repeat="album in albums">
+        <h2>{{ album.title }}</h2>
+        <h3>{{ album.artist }}</h3>
+        <time>{{ album.releaseDate }}</time>
+        <p>{{ album.timestamp }}</p>
+        <img ng-src="{{ album.artwork }}" />
+      </li>
     </ul>
   </md-content>
 </div>

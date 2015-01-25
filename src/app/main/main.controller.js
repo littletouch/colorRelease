@@ -1,23 +1,25 @@
 'use strict';
 
 angular.module('colorRelease')
-  .controller('MainCtrl', function ($scope, $timeout, $mdSidenav, $log, coverService) {
-    coverService.init();
+  .controller('MainCtrl', function ($scope, $timeout, $mdSidenav, $log, coverService, $firebase) {
+    // coverService.init();
 
-    $scope.filter = null;
-
+    var colorRef = new Firebase('https://color-release.firebaseio.com/colors/');
     $scope.openMenu = function() {
       $mdSidenav('left').open();
     };
 
-    $scope.albums = [
-      {name: 'foo', color: 'red'},
-      {name: 'bar', color: 'blue'},
-      {name: 'baz', color: 'green'}
-    ];
+    var updateAlbums = function(color, amount) {
+      var ref = colorRef.child(color).limitToLast(amount);
+
+      var sync = $firebase(ref);
+      var albumsArray = sync.$asArray();
+      $scope.albums = albumsArray;
+      console.log('updated album!');
+    }
 
     $scope.$on('goto', function(event, data) {
-      $scope.filter = data.color.name;
-      $log.log($scope.filter);
+      $log.log('goto color ' + data.color.name);
+      updateAlbums(data.color.name, 20);
     });
   });
