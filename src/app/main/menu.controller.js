@@ -7,14 +7,14 @@ angular.module('colorRelease')
     var currentColor = null;
 
     $scope.colors = [
-      {name: 'red', rbg: [255, 0, 0]},
-      {name: 'green', rgb: [0, 255, 0]},
-      {name: 'yellow', rgb: [255, 255, 0]},
-      {name: 'white', rbg: [255, 255, 255]},
-      {name: 'black', rgb: [0, 0, 0]},
-      {name: 'blue', rgb: [0, 0, 255]},
-      {name: 'purple', rgb: [128, 0, 128]},
-      {name: 'gray', rgb: [128, 128, 128]}
+      {name: 'red', rgb: [244, 67, 54], fontColor: [255, 255, 255]},
+      {name: 'green', rgb: [76, 175, 80], fontColor: [255, 255, 255]},
+      {name: 'yellow', rgb: [255, 235, 59], fontColor: [255, 255, 255]},
+      {name: 'white', rgb: [255, 255, 255], fontColor: [55, 71, 79]},
+      {name: 'black', rgb: [38, 50, 57], fontColor: [255, 255, 255]},
+      {name: 'blue', rgb: [33, 150, 243], fontColor: [255, 255, 255]},
+      {name: 'purple', rgb: [156, 39, 176], fontColor: [255, 255, 255]},
+      {name: 'gray', rgb: [158, 158, 158], fontColor: [255, 255, 255]}
     ];
 
     var gotoColor = function(color) {
