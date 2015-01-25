@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('colorRelease')
-  .controller('MenuCtrl', function ($rootScope, $scope, $log, $mdSidenav
-) {
-
+  .controller('MenuCtrl', function ($rootScope, $scope, $log,
+    $mdSidenav, $route, $routeParams, $location) {
+    var initColor;
     var currentColor = null;
 
     $scope.colors = [
@@ -22,13 +22,29 @@ angular.module('colorRelease')
       $rootScope.$broadcast('goto', {
         color: color
       });
+
+      if ($route.current.params.colorName != color.name) {
+        $location.path(color.name);
+      }
+
       $mdSidenav('left').close();
       $log.log('goto');
     };
 
     $scope.goto = gotoColor;
 
-    var initColor = _.sample($scope.colors)
+    // get color from url or sample one
+    var urlColorName = $route.current.params.colorName;
+
+    if ( urlColorName ) {
+      console.log('init color from url', urlColorName);
+      initColor = _.find($scope.colors, function(color){return color.name == urlColorName});
+    }
+
+    if (!initColor) {
+      initColor = _.sample($scope.colors)
+    }
+
     gotoColor(initColor);
 
     $scope.isSelected = function(color) {
