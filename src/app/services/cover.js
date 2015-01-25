@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('colorRelease')
-  .factory('coverService', function ($http, $q, $interval, store) {
+  .factory('coverService', function ($http, $q, $interval, store,  $rootScope) {
+
 
     var FEED_API_URL = 'https://ajax.googleapis.com/ajax/services/feed/load'
     var ITUNES_API_URL  = 'https://itunes.apple.com/lookup'
@@ -235,10 +236,19 @@ angular.module('colorRelease')
       var task = $interval(function(){
         var album = albums.pop();
         processAlbum(album);
+        if(albums.length === 0) {
+          $rootScope.is_worker_running = false;
+        }
       }, 4000, albums.length);
     }
 
     var init = function() {
+      if ($rootScope.is_worker_running) {
+        return;
+      }
+
+      $rootScope.is_worker_running = true;
+
       getNewReleases()
         .then(function(data){
           console.log('start processing');
