@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+gulp build && rsync -avz --delete dist/ root@www.xiuxiu.de:/home/wwwroot/color.littletouch.org/
