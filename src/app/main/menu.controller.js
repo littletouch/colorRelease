@@ -11,7 +11,7 @@ angular.module('colorRelease')
       {name: 'green', rgb: [76, 175, 80], fontColor: [255, 255, 255]},
       {name: 'yellow', rgb: [255, 235, 59], fontColor: [255, 255, 255]},
       {name: 'white', rgb: [255, 255, 255], fontColor: [55, 71, 79]},
-      {name: 'black', rgb: [38, 50, 57], fontColor: [255, 255, 255]},
+      {name: 'black', rgb: [33, 33, 33], fontColor: [255, 255, 255]},
       {name: 'blue', rgb: [33, 150, 243], fontColor: [255, 255, 255]},
       {name: 'purple', rgb: [156, 39, 176], fontColor: [255, 255, 255]},
       {name: 'gray', rgb: [158, 158, 158], fontColor: [255, 255, 255]}

@@ -52,24 +52,6 @@ angular.module('colorRelease')
       console.log("The read failed: " + errorObject.code);
     });
 
-    // ref.on("value", function(snapshot) {
-    //   var storedAlbumData = snapshot.val();
-    //
-    //   if (storedAlbumData) {
-    //     if (colorClass != storedAlbumData.cover.class) {
-    //       ref.set(album);
-    //
-    //       removeFromColor(storedAlbumData.cover.class, album);
-    //       insertToColor(colorClass, album);
-    //     }
-    //   } else {
-    //     ref.set(album);
-    //     insertToColor(colorClass, album);
-    //   }
-    // }, function (errorObject) {
-    //   console.log("The read failed: " + errorObject.code);
-    // });
-
   }
 
   var service = {
