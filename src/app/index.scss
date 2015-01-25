@@ -22,6 +22,7 @@
 
 .img {
   @include img-responsive;
+  text-align: center;
 }
 
 .color {
@@ -44,6 +45,26 @@
   z-index: 1;
   transition: 0.45s cubic-bezier(0.35, 0, 0.25, 1);
   transition-property: max-height, background-color, opacity;
+}
+
+.album {
+  text-align: center;
+  font-family: 'NTR';
+
+  .title {
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .artist-name {
+    margin: 0.1em;
+  }
+
+  .release-date {
+    margin: 5px;
+    color: #999;
+    line-height: 1.2;
+  }
 }
 // injector
 // endinjector

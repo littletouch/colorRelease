@@ -1,8 +1,8 @@
 <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-sm')" tabindex="-1" >
   <md-toolbar class="md-default-theme">
-    <h1 class="md-toolbar-tools">color</h1>
+    <h1 class="md-toolbar-tools text">Colors</h1>
   </md-toolbar>
-  <md-content flex class="md-default-theme" ng-controller="MenuCtrl">
+  <md-content flex class="md-default-theme sidebar" ng-controller="MenuCtrl">
     <div>
       <a
       class="color"
@@ -10,7 +10,7 @@
       ng-click="goto(color)"
       ng-class="{active: isSelected(color)}"
       md-highlight="isSelected(color)"
-      md-ink-ripple="#bbb"
+      md-ink-ripple="#B6B6B6"
       aria-hidden="false"
       >
         <span ng-bind="color.name">
@@ -30,23 +30,11 @@
       </button>
       <div layout="row" flex layout-align="end center">
         <div class="md-toolbar-item md-breadcrumb">
-          <span>App name</span>
+          <span class="text">Discover new release by artwork color</span>
         </div>
       </div>
     </div>
   </md-toolbar>
-
-  <!-- <md-content flex class="md-default-theme">
-    <ul>
-      <li ng-repeat="album in albums">
-        <h2>{{ album.title }}</h2>
-        <h3>{{ album.artist }}</h3>
-        <time>{{ album.releaseDate }}</time>
-        <p>{{ album.timestamp }}</p>
-        <img ng-src="{{ album.artwork }}" />
-      </li>
-    </ul> -->
-
 
   <md-content md-scroll-y layout="column" class="md-padding md-default-theme">
 
@@ -56,14 +44,13 @@
         <md-item ng-repeat="album in albums | filter:filter">
           <md-item-cotent>
             <md-card>
-              <md-card-content>
-                <div layout="column" layout-algin="center center">
-                  <h2>{{ album.title }}</h2>
-                  <h3>{{ album.artist }}</h3>
-                  <time>{{ album.releaseDate }}</time>
-                  <p>{{ album.timestamp }}</p>
-                  <img class="img" ng-src="{{ album.artwork }}" />
-                </div>
+              <md-card-content layout="column" layout-fill flex layout-align="center center" class='album'>
+                <h2 class="title">{{ album.title }}</h2>
+                <p class="release-date"><time>{{ album.releaseDate | date:'yyyy-MM-dd'}}</time></p>
+                <a ng-href="{{album.link}}"  target="_blank">
+                  <img class='img' ng-src="{{ album.artwork }}" />
+                </a>
+                <h3 class="artist-name">{{ album.artist }}</h3>
               </md-card-content>
             </md-card>
           </md-item-cotent>

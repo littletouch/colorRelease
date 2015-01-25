@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('colorRelease', ['ngAnimate', 'ngCookies', 'ngTouch',
-  'ngSanitize', 'ngResource', 'ngRoute', 'ngMaterial', 'spotify', 'firebase'])
+angular.module('colorRelease', ['ngAnimate', 'ngRoute', 'ngMaterial', 'firebase'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

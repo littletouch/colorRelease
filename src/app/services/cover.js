@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('colorRelease')
-  .factory('coverService', function ($http, $q, Spotify, $interval, store) {
+  .factory('coverService', function ($http, $q, $interval, store) {
 
     var FEED_API_URL = 'https://ajax.googleapis.com/ajax/services/feed/load'
     var ITUNES_API_URL  = 'https://itunes.apple.com/lookup'
