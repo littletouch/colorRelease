@@ -7,6 +7,10 @@ angular.module('colorRelease', ['ngAnimate', 'ngRoute', 'ngMaterial', 'firebase'
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       })
+      .when('/:colorName/', {
+        templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
