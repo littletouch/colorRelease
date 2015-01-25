@@ -1,0 +1,6 @@
+{
+  "name": "ss15-kunjinkao",
+  "root": "dist",
+  "clean_urls": true,
+  "error_page": "404.html"
+}
