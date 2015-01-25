@@ -53,10 +53,10 @@
     </div>
   </md-toolbar>
 
-  <md-content md-scroll-y layout="column" class="md-padding md-default-theme">
+  <md-content md-scroll-y layout-fill flex layout="column" layout-align="center center" class="md-padding md-default-theme">
 
     <div layout="column" layout-fill flex layout-align="center center" class="layout-content layout-options">
-      <!-- <md-progress-circular flex class="md-hue-2" md-mode="indeterminate"></md-progress-circular> -->
+        <md-progress-circular class="md-hue-2" md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
       <md-list>
         <md-item ng-repeat="album in albums | filter:filter">
           <md-item-cotent>

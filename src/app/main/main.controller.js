@@ -4,8 +4,8 @@ angular.module('colorRelease')
   .controller('MainCtrl', function ($scope, $timeout, $mdSidenav, $log, coverService, $firebase) {
     var $toolbar = $('md-toolbar');
     var $sidebar = $('.sidebar');
-
     var colorRef = new Firebase('https://color-release.firebaseio.com/colors/');
+
     $scope.openMenu = function() {
       $mdSidenav('left').open();
     };
@@ -18,10 +18,11 @@ angular.module('colorRelease')
 
       var ref = colorRef.child(color).limitToLast(amount);
 
-      var sync = $firebase(ref);
-      var albumsArray = sync.$asArray();
-      $scope.albums = albumsArray;
-      console.log('updated album!');
+      var albumsArray = $firebase(ref).$asArray();
+      albumsArray.$loaded().then(function() {
+        $scope.isLoading = false;
+        $scope.albums = albumsArray;
+      })
     }
 
     var updateStyle = function(color) {
@@ -43,9 +44,11 @@ angular.module('colorRelease')
 
     }
 
+    $scope.isLoading = true;
+
     $scope.$on('goto', function(event, data) {
       if(!data.color) return;
-
+      $scope.isLoading = true;
       $log.log('goto color ' + data.color.name);
       updateAlbums(data.color.name);
       updateStyle(data.color);
