@@ -53,15 +53,17 @@
     </div>
   </md-toolbar>
 
-  <md-content md-scroll-y layout-fill flex layout="column" layout-align="center center" class="md-padding md-default-theme">
+  <md-content md-scroll-y layout-fill flex layout="column" layout-align="start center" class="md-padding md-default-theme">
 
-    <div layout="column" layout-fill flex layout-align="center center" class="layout-content layout-options">
-        <md-progress-circular class="md-hue-2" md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
+    <div layout="column" flex class="layout-content layout-options">
+      <div layout="column" flex layout-align="center center" ng-show="isLoading">
+        <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+      </div>
       <md-list>
         <md-item ng-repeat="album in albums | filter:filter">
           <md-item-cotent>
-            <md-card>
-              <md-card-content layout="column" layout-fill flex layout-align="center center" class='album'>
+            <md-card class="album">
+              <md-card-content layout="column" flex layout-align="center center" class='album-content'>
                 <h2 class="title">{{ album.title }}</h2>
                 <p class="release-date"><time>{{ album.releaseDate | date:'yyyy-MM-dd'}}</time></p>
                 <a ng-href="{{album.link}}"  target="_blank">

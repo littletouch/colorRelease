@@ -54,6 +54,11 @@
 }
 
 .album {
+  max-width: 30em;
+  margin-bottom: 2em;
+}
+
+.album-content {
   text-align: center;
   font-family: Tahoma, Geneva, sans-serif;
 
@@ -63,11 +68,12 @@
   }
 
   .artist-name {
-    margin: 0.1em;
+    margin: 0;
+    margin-top: 1em;
   }
 
   .release-date {
-    margin: 5px;
+    margin: 1em 0;
     color: #999;
     line-height: 1.2;
   }
