@@ -6,9 +6,9 @@ angular.module('colorRelease')
     var $sidebar = $('.sidebar');
     var colorRef = new Firebase('https://color-release.firebaseio.com/colors/');
 
-    $scope.openMenu = function() {
-      $mdSidenav('left').open();
-    };
+    $scope.toggleMenu = function() {
+      $mdSidenav('left').toggle();
+    }
 
     var updateAlbums = function(color, amount) {
 
