@@ -8,6 +8,11 @@ angular.module('colorRelease')
     var ITUNES_API_URL  = 'https://itunes.apple.com/lookup'
     var RSS_URL = 'https://itunes.apple.com/WebObjects/MZStore.woa/wpa/MRSS/newreleases/sf=143441/limit=100/rss.xml';
 
+    var salt = function() {
+      var now = new Date();
+      var saltDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+      return saltDate.getTime();
+    }
 
     var rgbToHsl = function (r, g, b){
       r /= 255, g /= 255, b /= 255;
@@ -99,10 +104,11 @@ angular.module('colorRelease')
 
     var getNewReleases = function(){
       var deferred = $q.defer();
+      var url = RSS_URL + '?date=' + salt();
 
       var param = {
         'v': '1.0',
-        'q': encodeURI(RSS_URL),
+        'q': encodeURI(url),
         'callback': 'JSON_CALLBACK',
         'num': 100
       }
@@ -148,11 +154,11 @@ angular.module('colorRelease')
       var saturation = hsl[1];
       var lightness = hsl[2];
 
-      if (lightness>=0.9 && lightness<= 1) {
+      if (lightness>=0.93 && lightness<= 1) {
         color = 'white';
       } else if (lightness>=0 && lightness<= 0.1) {
         color = 'black';
-      } else if (saturation <= 0.1) {
+      } else if (saturation <= 0.06) {
         color = 'gray';
       } else if (hue <= 10 || hue >= 350 ) {
         color = 'red';
